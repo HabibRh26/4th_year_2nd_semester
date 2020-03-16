@@ -1,0 +1,22 @@
+Bexp = 0.05; % expected blocking prob
+A = 9;% initial assumed offered traffic
+n = 15; % num of channel
+e = 2; % initial value of error
+
+while e<0.0001
+s=1;
+for i=1:n;
+s=s+(A^i)/factorial(i);
+end
+B = ((A^n)./factorial(n))/s; % blocking prob
+e = abs(B-Bexp);
+A = A+.001;
+end % end of loop
+% task 2
+lamda = 1/60; %arrival rate per user
+th = 1.5 ; %holding time of each year
+a = lamda*th; % offered traffic per user
+N = A/a; % num of user per cell
+Nt = N*500; % total user of network
+P = 3* 10^6; % total population of the city
+Rp= (Nt/P)*100; % penetration rate
